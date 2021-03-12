@@ -22,7 +22,7 @@ const send = async(message) => {
     });
 }
 
-schedule.scheduleJob('25 02,14 * * 1-7', function(){
+schedule.scheduleJob('40 02,14 * * 1-7', function(){
     send('같이 개발 공부하자 😉');
 });
 schedule.scheduleJob('* 00 * * 1-5', function(){
