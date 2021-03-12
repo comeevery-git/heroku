@@ -1,33 +1,37 @@
-// index.js
+const { WebClient } = require("@slack/web-api");
 
-// Initialize Slack event listener
-const { createEventAdapter } = require("@slack/events-api");
-const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
-const slackEvents = createEventAdapter(slackSigningSecret);
+// Read a token from the environment variables
+const token = process.env.SLACK_TOKEN;
 
-const { handleCommand, handleMessage } = require("./handler.js");
+// Initialize
+const web = new WebClient(token);
 
-// Listen to message event (message.im, message.channel)
-slackEvents.on("message", (event) => {
-  // Ignore messages from bots
-  if (event.bot_id != null) {
-    return;
-  }
-  if (event.channel_type == "im") {
-    handleCommand(event);
-  } else if (event.channel_type == "channel") {
-    handleMessage(event);
-  }
-});
-
-// Catch and log errors
-slackEvents.on("error", (error) => {
-  console.log(error);
-});
-
-// Run server
-const port = process.env.PORT || 5000;
-(async () => {
-  const server = await slackEvents.start(port);
-  console.log(`Listening for events on ${server.address().port}`);
-})();
+express()
+  .use(express.json())
+  .post("/slack/events", (req, res) => {
+    let body = req.body;
+    let event = body.event;
+    if (body.type === "event_callback") {
+      console.log(event);
+      if (event.type === "message") {
+        if (event.text === "안녕") {
+          console.log(
+            `메시지 수신 channel:${event.channel}, user:${event.user}`
+          );
+          web.chat
+            .postMessage({ channel: event.channel, text: "안녕하세요 😉" })
+            .then((result) => {
+              console.log("Message sent: " + result.ts);
+            });
+          res.sendStatus(200);
+        }
+      }
+    } else if (body.type === "url_verification") {
+      // URL 검증을 위한 처리
+      console.log("url verification");
+      res.send(body.challenge);
+    } else {
+      res.sendStatus(200);
+    }
+  })
+  .listen(PORT, () => console.log(`Listening on ${PORT}`));

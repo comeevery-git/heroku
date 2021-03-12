@@ -1,2 +1,1 @@
-release: node migrate.js
-web: node index.js
+web: npm start
