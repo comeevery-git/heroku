@@ -1,6 +1,8 @@
 const express = require('express')
 const path = require('path')
-const PORT = process.env.PORT || 5000
+var PORT = process.env.PORT || 1337;
+
+
 // OAuth & Permissions 설정 페이지에서 생성된 Bot User OAuth Access Token
 const token = 'xoxb-1874615282960-1856981463604-0rYmANCkUO9qX1y4TWYahX00'; 
 
