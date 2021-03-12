@@ -1,13 +1,13 @@
 const { WebClient } = require("@slack/web-api");
 const express = require('express');
 const path = require('path');
+const axios = require('axios');
 
 // server port, token
 const PORT = process.env.PORT || 5000;
 const token = process.env.SLACK_TOKEN;
 
 // request headers
-import axios from 'axios';
 const headers = {
   'Content-Type': 'application/json',
 };
@@ -44,7 +44,7 @@ const sendMessage = async ({ text }) => {
   }
 };
 
-schedule.scheduleJob('35 23,14 * * 1-7', function(){
+schedule.scheduleJob('37 23,14 * * 1-7', function(){
   sendMessage('같이 개발 공부하자 😉');
 });
 schedule.scheduleJob('* 00 * * 1-5', function(){
