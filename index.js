@@ -1,6 +1,7 @@
 const { WebClient } = require("@slack/web-api");
 
 // Read a token from the environment variables
+const PORT = process.env.PORT || 5000;
 const token = process.env.SLACK_TOKEN;
 
 // Initialize
