@@ -3,7 +3,8 @@ const path = require('path')
 const { WebClient } = require('@slack/web-api');
 var PORT = process.env.PORT || 3000;
 // OAuth & Permissions 설정 페이지에서 생성된 Bot User OAuth Access Token
-const token = 'xoxb-1874615282960-1856981463604-0rYmANCkUO9qX1y4TWYahX00'; 
+const token = 'xoxb-1874615282960-1856981463604-unyNVu8nzK5Wf5kZJvgwPcg4'; 
+
 const web = new WebClient(token);
 
 express()
