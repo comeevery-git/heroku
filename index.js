@@ -22,13 +22,13 @@ const send = async(message) => {
     });
 }
 
-schedule.scheduleJob('05 11,23 * * 1-7', function(){
+schedule.scheduleJob('25 02,14 * * 1-7', function(){
     send('같이 개발 공부하자 😉');
 });
-schedule.scheduleJob('50 8 * * 1-5', function(){
+schedule.scheduleJob('* 00 * * 1-5', function(){
     send('출근!');
 });
-schedule.scheduleJob('5 9 * * 1-5', function(){
+schedule.scheduleJob('* 8 * * 1-5', function(){
     send('퇴근!');
 });
 // schedule end
