@@ -6,6 +6,7 @@ const axios = require('axios');
 // server port, token
 const PORT = process.env.PORT || 5000;
 const token = process.env.SLACK_TOKEN;
+const puglogURL = process.env.PUGLOG_URL_WEBHOOK;
 
 // request headers
 const headers = {
@@ -17,14 +18,13 @@ const web = new WebClient(token);
 
 // schedule
 const schedule = require('node-schedule');
-const webhookURL = 'https://hooks.slack.com/services/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';
 // Send Message - Webhook
 const sendMessage = async ({ text }) => {
   try {
     const { data } = await axios({
       method: 'post',
       // cors 방지
-      url: "https://cors-anywhere.herokuapp.com/"+ webhookURL,
+      url: "https://cors-anywhere.herokuapp.com/"+ puglogURL,
       headers,
       data: {
         blocks: [
@@ -44,7 +44,7 @@ const sendMessage = async ({ text }) => {
   }
 };
 
-schedule.scheduleJob('37 23,14 * * 1-7', function(){
+schedule.scheduleJob('* */5 * * 6-7', function(){
   sendMessage('같이 개발 공부하자 😉');
 });
 schedule.scheduleJob('* 00 * * 1-5', function(){
