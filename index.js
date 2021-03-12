@@ -9,10 +9,8 @@ const token = process.env.SLACK_TOKEN;
 // Initialize
 const web = new WebClient(token);
 
-const Slack = require('slack-node'); 
+// schedule start
 const schedule = require('node-schedule');
-
-const slack = new Slack(token);
 const send = async(message) => {
   slack.api('chat.postMessage', {
       username: 'slack bot',  // 슬랙에 표시될 봇이름
@@ -23,13 +21,14 @@ const send = async(message) => {
       console.log(response);
     });
 }
-send('슬랙에 메시지를 전송합니다.');
+
 schedule.scheduleJob('50 8 * * 1-5', function(){
     send('출근!');
 });
 schedule.scheduleJob('5 9 * * 1-5', function(){
     send('퇴근!');
 });
+// schedule end
 
 express()
   .use(express.json())
