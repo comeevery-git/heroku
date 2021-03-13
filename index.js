@@ -16,11 +16,10 @@ const schedule = require('node-schedule');
 // Send Message - Webhook
 const sendMessage = async ({ text }) => {
   try {
-    const payload = {"text":text};
     const { data } = await axios({
       method: 'post',
       url: puglogURL,
-      data: JSON.stringify(payload),
+      data: JSON.stringify(text),
       headers: {'Content-Type': 'application/json'}
     });
     return data;
@@ -29,7 +28,7 @@ const sendMessage = async ({ text }) => {
   }
 };
 
-schedule.scheduleJob('*/5 * * * 6-7', function(){
+schedule.scheduleJob('*/2 * * * 6-7', function(){
   sendMessage('같이 개발 공부하자 😉');
 });
 schedule.scheduleJob('* 00 * * 1-5', function(){
