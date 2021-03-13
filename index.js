@@ -13,13 +13,19 @@ const web = new WebClient(token);
 
 // schedule
 const schedule = require('node-schedule');
+const { json } = require("express");
 // Send Message - Webhook
 const sendMessage = async ({ text }) => {
+  console.log(`text :::::::: ${text}`);
+  const textData = {
+    "text":text
+  }
+  console.log(`textData :::::::: ${textData}`);
   try {
     const { data } = await axios({
       method: 'post',
       url: puglogURL,
-      data: JSON.stringify(text),
+      data: JSON.stringify(textData),
       headers: {'Content-Type': 'application/json'}
     });
     return data;
