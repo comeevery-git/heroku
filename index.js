@@ -11,22 +11,22 @@ const puglogURL = process.env.PUGLOG_URL_WEBHOOK;
 // Initialize
 const web = new WebClient(token);
 
+const header = {'Content-Type': 'application/json'};
 // schedule
 const schedule = require('node-schedule');
 const { json } = require("express");
 // Send Message - Webhook
 const sendMessage = async ({ text }) => {
-  console.log(`text :::::::: ${text}`);
-  const textData = {
-    "text":text
-  }
+  const textData = {"text":text};
   console.log(`textData :::::::: ${textData}`);
+  console.log(`json :::::::: ${JSON.stringify(textData)}`);
+  console.log(`header :::::::: ${header}`);
   try {
     const { data } = await axios({
       method: 'post',
       url: puglogURL,
       data: JSON.stringify(textData),
-      headers: {'Content-Type': 'application/json'}
+      headers: header
     });
     return data;
   } catch (error) {
