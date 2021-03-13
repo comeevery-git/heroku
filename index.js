@@ -26,8 +26,8 @@ const sendMessage = async ({ text }) => {
     const { data } = await axios({
       method: 'post',
       url: puglogURL,
-      headers,
-      data: JSON.stringify(payload)
+      data: JSON.stringify(payload),
+      headers
     });
     return data;
   } catch (error) {
