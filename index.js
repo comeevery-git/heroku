@@ -8,12 +8,6 @@ const PORT = process.env.PORT || 5000;
 const token = process.env.SLACK_TOKEN;
 const puglogURL = process.env.PUGLOG_URL_WEBHOOK;
 
-// request headers
-const headers = {
-  'Content-Type': 'application/json'
-//  'X-Requested-With': 'XMLHttpRequest'
-};
-
 // Initialize
 const web = new WebClient(token);
 
@@ -27,7 +21,7 @@ const sendMessage = async ({ text }) => {
       method: 'post',
       url: puglogURL,
       data: JSON.stringify(payload),
-      headers
+      headers: {'Content-Type': 'application/json'}
     });
     return data;
   } catch (error) {
