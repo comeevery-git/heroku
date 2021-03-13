@@ -1,9 +1,5 @@
 const { WebClient } = require("@slack/web-api");
 const express = require('express');
-const cors = require('cors');
-const app = express();
-app.use(cors());
-
 const path = require('path');
 const axios = require('axios');
 
@@ -29,7 +25,7 @@ const sendMessage = async ({ text }) => {
     const { data } = await axios({
       method: 'post',
       // cors 방지
-      url: "https://cors-anywhere.herokuapp.com/"+ puglogURL,
+      url: puglogURL,
       headers,
       data: {
         blocks: [
@@ -60,7 +56,7 @@ schedule.scheduleJob('* 8 * * 1-5', function(){
 });
 
 // basic communication
-app()
+express()
   .use(express.json())
   .post("/slack/events", (req, res) => {
     let body = req.body;
