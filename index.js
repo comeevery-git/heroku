@@ -10,7 +10,7 @@ const puglogURL = process.env.PUGLOG_URL_WEBHOOK;
 
 // request headers
 const headers = {
-  "Content-Type": "application/json"
+  'Content-Type': 'application/x-www-form-urlencoded'
 //  'X-Requested-With': 'XMLHttpRequest'
 };
 
