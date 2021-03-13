@@ -1,5 +1,9 @@
 const { WebClient } = require("@slack/web-api");
 const express = require('express');
+const cors = require('cors');
+const app = express();
+app.use(cors());
+
 const path = require('path');
 const axios = require('axios');
 
@@ -11,6 +15,7 @@ const puglogURL = process.env.PUGLOG_URL_WEBHOOK;
 // request headers
 const headers = {
   'Content-Type': 'application/json',
+  'X-Requested-With': 'XMLHttpRequest'
 };
 
 // Initialize
@@ -55,7 +60,7 @@ schedule.scheduleJob('* 8 * * 1-5', function(){
 });
 
 // basic communication
-express()
+app()
   .use(express.json())
   .post("/slack/events", (req, res) => {
     let body = req.body;
