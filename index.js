@@ -10,7 +10,7 @@ const puglogURL = process.env.PUGLOG_URL_WEBHOOK;
 
 // request headers
 const headers = {
-  'Content-Type': 'application/json'
+  "Content-Type": "application/json"
 //  'X-Requested-With': 'XMLHttpRequest'
 };
 
@@ -26,9 +26,7 @@ const sendMessage = async ({ text }) => {
       method: 'post',
       url: puglogURL,
       headers,
-      data: {
-        text: text
-      },
+      data: JSON.stringify(text)
     });
     return data;
   } catch (error) {
