@@ -10,7 +10,7 @@ const puglogURL = process.env.PUGLOG_URL_WEBHOOK;
 
 // request headers
 const headers = {
-  'Content-Type': 'application/x-www-form-urlencoded'
+  'Content-Type': 'application/json'
 //  'X-Requested-With': 'XMLHttpRequest'
 };
 
@@ -22,11 +22,12 @@ const schedule = require('node-schedule');
 // Send Message - Webhook
 const sendMessage = async ({ text }) => {
   try {
+    const payload = {"text":text};
     const { data } = await axios({
       method: 'post',
       url: puglogURL,
       headers,
-      data: JSON.stringify(text)
+      data: JSON.stringify(payload)
     });
     return data;
   } catch (error) {
