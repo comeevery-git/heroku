@@ -10,8 +10,8 @@ const puglogURL = process.env.PUGLOG_URL_WEBHOOK;
 
 // request headers
 const headers = {
-  'Content-Type': 'application/json',
-  'X-Requested-With': 'XMLHttpRequest'
+  'Content-Type': 'application/json'
+//  'X-Requested-With': 'XMLHttpRequest'
 };
 
 // Initialize
@@ -24,19 +24,10 @@ const sendMessage = async ({ text }) => {
   try {
     const { data } = await axios({
       method: 'post',
-      // cors 방지
       url: puglogURL,
       headers,
       data: {
-        blocks: [
-          {
-            type: 'section',
-            text: {
-              type: 'mrkdwn',
-              text,
-            },
-          },
-        ],
+        text: text
       },
     });
     return data;
