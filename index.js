@@ -37,7 +37,7 @@ const sendMessage = async ({ text }) => {
 schedule.scheduleJob('*/10 * * * * *', function(){
   console.log(`😉 health check ${new Date()}`);
 });
-schedule.scheduleJob('0 */2 * * *', function(){
+schedule.scheduleJob('0 */2 * * * *', function(){
   sendMessage('같이 개발 공부하자 😉');
 });
 schedule.scheduleJob('0 * 00 * * 1-5', function(){
