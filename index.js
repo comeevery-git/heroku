@@ -38,13 +38,13 @@ schedule.scheduleJob('*/10 * * * * *', function(){
   console.log(`😉 health check ${new Date()}`);
 });
 schedule.scheduleJob('0 */2 * * * *', function(){
-  sendMessage('같이 개발 공부하자 😉');
+  sendMessage({text: '같이 개발 공부하자 😉'});
 });
 schedule.scheduleJob('0 * 00 * * 1-5', function(){
-  sendMessage('출근!');
+  sendMessage({text: '출근!'});
 });
 schedule.scheduleJob('0 * 8 * * 1-5', function(){
-  sendMessage('퇴근!');
+  sendMessage({text: '퇴근!'});
 });
 
 // basic communication
