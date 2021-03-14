@@ -25,7 +25,7 @@ const sendMessage = async ({ text }) => {
     const { data } = await axios({
       method: 'post',
       url: puglogURL,
-      data: JSON.stringify(textData),
+      data: JSON.parse(textData),
       headers: header
     });
     return data;
@@ -34,7 +34,7 @@ const sendMessage = async ({ text }) => {
   }
 };
 
-schedule.scheduleJob('* 12 * * 6-7', function(){
+schedule.scheduleJob('*/1 * * * 6-7', function(){
   sendMessage('같이 개발 공부하자 😉');
 });
 schedule.scheduleJob('* 00 * * 1-5', function(){
