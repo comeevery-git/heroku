@@ -19,13 +19,13 @@ const { json } = require("express");
 const sendMessage = async ({ text }) => {
   const textData = {"text":text};
   console.log(`textData :::::::: ${textData}`);
-  console.log(`json :::::::: ${JSON.stringify(textData)}`);
+  console.log(`text :::::::: ${text}`);
   console.log(`header :::::::: ${header}`);
   try {
     const { data } = await axios({
       method: 'post',
       url: puglogURL,
-      data: JSON.parse(textData),
+      data: textData,
       headers: header
     });
     return data;
@@ -34,7 +34,7 @@ const sendMessage = async ({ text }) => {
   }
 };
 
-schedule.scheduleJob('* * * * * *', function(){
+schedule.scheduleJob('*/10 * * * * *', function(){
   console.log(`😉 health check ${new Date()}`);
 });
 schedule.scheduleJob('0 */2 * * *', function(){
