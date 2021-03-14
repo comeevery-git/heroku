@@ -34,13 +34,13 @@ const sendMessage = async ({ text }) => {
   }
 };
 
-schedule.scheduleJob('*/1 * * * 6-7', function(){
+schedule.scheduleJob('0 */2 * * *', function(){
   sendMessage('같이 개발 공부하자 😉');
 });
-schedule.scheduleJob('* 00 * * 1-5', function(){
+schedule.scheduleJob('0 * 00 * * 1-5', function(){
   sendMessage('출근!');
 });
-schedule.scheduleJob('* 8 * * 1-5', function(){
+schedule.scheduleJob('0 * 8 * * 1-5', function(){
   sendMessage('퇴근!');
 });
 
